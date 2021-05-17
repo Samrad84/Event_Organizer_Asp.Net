@@ -1,0 +1,80 @@
+﻿@page
+@model Inlämning_Asp.Pages.JoinEventModel
+
+@{
+    ViewData["Title"] = "JoinEvent";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            @Model.Event.Title
+        </h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Description)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Date)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Date)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Address)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Address)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center py-5">
+    @if (Request.Method == "POST")
+    {
+        <div class="d-flex flex-column py-2">
+            <h2>Successfully joined @Model.Event.Title! See you there!</h2>
+            <div class="d-flex justify-content-center">
+                <a asp-page="/Events" type="button" class="btn btn-outline-primary">View More Events</a>
+                <a asp-page="/MyEvents" type="button" class="btn btn-outline-primary">View Your Events</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <form asp-route-id="@Model.Event.Id">
+            <input type="submit" class="btn btn-outline-primary" value="Join This Event" />
+        </form>
+    }
+</div>

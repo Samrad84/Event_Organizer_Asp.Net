@@ -1,0 +1,11 @@
+﻿@page
+@model Inlämning_Asp.Pages.LoginModel
+@{
+}
+
+<h2>Log in</h2>
+<form method="post">
+    <input asp-for="LoginUser.UserName" />
+    <input asp-for="LoginUser.Password" />
+    <input type="submit" />
+</form>

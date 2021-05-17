@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Inlämning_Asp.Models
+
+@inject SignInManager<Buyer> SignInManager
+@inject UserManager<Buyer> UserManager
+
+
+@{
+    if (User.Identity.IsAuthenticated)
+    {
+        IdentityUser user = await UserManager.GetUserAsync(User);
+
+        <h3>@User.Identity.Name find at @user?.Email</h3>
+    }
+}

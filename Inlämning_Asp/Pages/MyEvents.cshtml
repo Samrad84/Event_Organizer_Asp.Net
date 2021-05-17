@@ -1,0 +1,57 @@
+﻿@page
+@model Inlämning_Asp.Pages.MyEventsModel
+
+@{
+    ViewData["Title"] = "MyEvents";
+}
+
+<h1>My Events</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Events[0].Address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Events) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Address)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

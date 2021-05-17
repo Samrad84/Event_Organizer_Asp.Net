@@ -1,0 +1,98 @@
+﻿@page
+@model Inlämning_Asp.Pages.Admin.UserDetailsModel
+
+@{
+    ViewData["Title"] = "User Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>@Model.ThisUser.UserName</h1>
+
+<hr />
+<div class="container">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ThisUser.Id" />
+            @foreach (var item in Model.Roles)
+            {
+                <h4>@Html.DisplayFor(modelItem => item)</h4>
+            }
+            @if (Model.ThisUser.LockoutEnd != null)
+            {
+                <h3 class="text-danger">Banned</h3>
+            }
+            @if (Model.DetailsChanged)
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p>Details successfully updated</p>
+                </div>
+                <div class="d-flex align-items-center flex-column">
+                    <h5>Details successfully updated</h5>
+                </div>
+            }
+            <div class="form-group">
+                <label asp-for="ThisUser.UserName" class="control-label"></label>
+                <input asp-for="ThisUser.UserName" class="form-control" />
+                <span asp-validation-for="ThisUser.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisUser.FirstName" class="control-label"></label>
+                <input asp-for="ThisUser.FirstName" class="form-control" />
+                <span asp-validation-for="ThisUser.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisUser.LastName" class="control-label"></label>
+                <input asp-for="ThisUser.LastName" class="form-control" />
+                <span asp-validation-for="ThisUser.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisUser.Email" class="control-label"></label>
+                <input asp-for="ThisUser.Email" class="form-control" />
+                <span asp-validation-for="ThisUser.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThisUser.PhoneNumber" class="control-label"></label>
+                <input asp-for="ThisUser.PhoneNumber" class="form-control" />
+                <span asp-validation-for="ThisUser.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ThisUser.OrganizedEvents" class="control-label"></label>
+                @foreach (var item in Model.UserEvents)
+                {
+                    <br />
+                    @Html.DisplayFor(modelItem => item.Title)
+                    <a type="button" class="btn btn-outline-info" asp-page="../Events/Details" asp-route-id="@item.Id">See this event</a>
+                }
+            </div>
+            <div class="row">
+                <div class="form-group mx-1">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+
+                <div class="form-group mx-1">
+                    @{string banValue; }
+                    @if (@Model.ThisUser.LockoutEnd != null)
+                    {
+                        banValue = "Unban";
+                    }
+                    else
+                    {
+                        banValue = "Ban!";
+                    }
+                    <input type="submit" value="@banValue" class="btn btn-danger" asp-route-id="@Model.ThisUser.Id" asp-route-BanUser="true" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./ManageUsers">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

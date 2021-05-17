@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    @if (User.IsInRole("Organizer"))
+    {
+<h1 class="display-4">
+    Welcome! Dear
+    <a asp-page="/Add_Event">Organizer</a>
+    !!
+</h1> }
+else if (User.IsInRole("Admin"))
+{
+<a asp-page="/Admin/ManageUsers">Admin</a>
+                <h1 class="display-4">Welcome! Yo Admin!!</h1> }
+            else
+            {
+<h1 class="display-4">Welcome  <a asp-page="/Events">Dear Visitor</a></h1>}
+    <h2>The Best Event Provider in The World</h2>
+    <img src="~/142380.jpg" />
+    <div class="btn-group">
+        <a asp-page="/User/Register" type="button" class="btn btn-outline-primary">Register</a>
+        @if (User.Identity.IsAuthenticated)
+        {
+<a asp-page="/User/Logout" type="button" class="btn btn-outline-primary">Log Out</a> }
+else
+{
+<a asp-page="/User/Login" type="button" class="btn btn-outline-primary">Log In</a>}
+    </div>
+</div>

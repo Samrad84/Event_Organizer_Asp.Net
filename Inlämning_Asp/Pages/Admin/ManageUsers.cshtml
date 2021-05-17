@@ -1,0 +1,61 @@
+﻿@page
+@model Inlämning_Asp.Pages.Admin.ManageUsersModel
+
+@{
+    ViewData["Title"] = "Manage Users";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Role Toggle
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @{ string organizerValue;
+                        string colorButton;
+                        @if (Model.IsOrganizer(item.Id).Result == true)
+                        {
+                            organizerValue = "Make Attendee";
+                            colorButton = "btn-outline-danger";
+                        }
+                        else
+                        {
+                            organizerValue = "Make Organizer";
+                            colorButton = "btn-outline-success";
+                        }}
+                    <form method="post">
+                        <input type="button" class="btn @colorButton" value="@organizerValue" onclick="this.form.submit()" />
+                        <input type="hidden" name="id" value="@item.Id" />
+                    </form>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <a type="button" class="btn btn-outline-info" asp-page="./UserDetails" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
