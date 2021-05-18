@@ -48,7 +48,6 @@
 
   <ItemGroup>
     <None Include="Pages\Admin\ManageUsers.cshtml" />
-    <None Include="Pages\Admin\UserDetails.cshtml" />
     <None Include="wwwroot\142380.jpg" />
   </ItemGroup>
 

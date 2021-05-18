@@ -65,6 +65,7 @@ namespace Inlämning_Asp.Data
 
             Buyer[] organizers = new Buyer[] {
                 new Buyer(){
+                    FirstName = "Arvin",
                     UserName = "Funcorp",
                     Email = "info@funcorp.com",
                     PhoneNumber = "+1 203 43 234",
