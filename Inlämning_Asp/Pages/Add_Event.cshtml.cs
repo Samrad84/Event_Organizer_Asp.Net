@@ -19,9 +19,9 @@ namespace Inlämning_Asp.Pages
 
     public class Add_EventModel : PageModel
     {
-        private readonly Inlämning_Asp.Data.EventDbContext _context;
+        private readonly EventDbContext _context;
 
-        public Add_EventModel(Inlämning_Asp.Data.EventDbContext context)
+        public Add_EventModel(EventDbContext context)
         {
             _context = context;
         }
@@ -34,7 +34,7 @@ namespace Inlämning_Asp.Pages
         [BindProperty]
         public Event Event { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

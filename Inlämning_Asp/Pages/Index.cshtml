@@ -12,8 +12,11 @@
     {
     <h1 class="display-4">
         Welcome! Dear @User.Identity.Name
-        <a asp-page="/Add_Event">Organizer</a>
-        !!
+        You are an Organizer!
+
+        <button> <a asp-page="/Add_Event">Add Event</a></button>
+        <button> <a asp-page="/Delete_Events">Delete Event</a></button>
+
     </h1> }
     else if (User.IsInRole("Admin"))
     {
@@ -21,11 +24,13 @@
         <h1 class="display-4">Welcome @User.Identity.Name! Yo Admin!!</h1> }
     else
     {
-<h1 class="display-4">Welcome @User.Identity.Name <a asp-page="/Events">Dear Visitor</a></h1>}
+<h1 class="display-4">Welcome @User.Identity.Name <a asp-page="/Events">Dear Visitor</a></h1>
+    } 
+
     <h2>The Best Event Provider in The World</h2>
     <img src="~/142380.jpg" />
     <div class="btn-group">
-        <a asp-page="/User/Register" type="button" class="btn btn-outline-primary">Register</a>
+       
         @if (User.Identity.IsAuthenticated)
         {
             <a asp-page="/User/Logout" type="button" class="btn btn-outline-primary">Log Out</a> }

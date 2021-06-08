@@ -1,0 +1,77 @@
+﻿@page
+@model Inlämning_Asp.Pages.Delete_eventModel
+@{ ViewData["Title"] = "Delete_event";
+}
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            @Model.Event.Title
+        </h5>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Description)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Place)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Place)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Date)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Date)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Event.Address)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.Event.Address)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center py-5">
+    @if (Request.Method == "POST")
+    {
+        <div class="d-flex flex-column py-2">
+            <h2>Successfully Deleted @Model.Event.Title! </h2>
+            <div class="d-flex justify-content-center">
+                <a asp-page="/Delete_Events" type="button" class="btn btn-outline-primary">Back TO Events</a>
+               
+            </div>
+        </div>
+    }
+    else
+    {
+        <form asp-route-id="@Model.Event.Id">
+            <input type="submit" class="btn btn-outline-primary" value="Remove This Event" />
+        </form>
+    }
+</div>
