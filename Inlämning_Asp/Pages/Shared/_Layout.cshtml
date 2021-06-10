@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+@using Microsoft.AspNetCore.Identity
+@using Inlämning_Asp.Models
+@using Inlämning_Asp.Data
+
+@inject SignInManager<Buyer> SignInManager
+@inject UserManager<Buyer> UserManager
+@inject EventDbContext Context
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -22,28 +29,40 @@
                             <a asp-page="/Index" type="button" class="btn btn-outline-primary">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a asp-page="/Events" type="button" class="btn btn-outline-primary">Events</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                @if (User.IsInRole("Organizer"))
+                                {
+                                    <a asp-page="/OrganizerEvents" type="button" class="btn btn-outline-primary">Organized Events</a>
+                                }
+                                else
+                                {
+                                    <a asp-page="/Events" type="button" class="btn btn-outline-primary">Events</a>
+                                }
 
-    <footer class="border-top footer text-muted">
+                            }
+
+                        </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
         <div class="container">
-            &copy; 2021 - Inlämning_Asp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a type="button" class="btn-danger text-light" asp-page="/Index" asp-route-resetDb="true">Reset Db</a>
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - Inlämning_Asp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <a type="button" class="btn-danger text-light" asp-page="/Index" asp-route-resetDb="true">Reset Db</a>
+            </div>
+        </footer>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>

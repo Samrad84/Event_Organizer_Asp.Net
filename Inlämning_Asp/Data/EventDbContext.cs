@@ -42,6 +42,9 @@ namespace Inlämning_Asp.Data
 
             Buyer admin = new Buyer()
             {
+                FirstName = "Alireza",
+                LastName = "Mohammadi",
+            
                 UserName = "admin",
                 Email = "admin@hotmail.com",
             };
@@ -50,6 +53,8 @@ namespace Inlämning_Asp.Data
 
             Buyer superadmin = new Buyer()
             {
+                FirstName = "Alireza",
+                LastName = "Mohammadi",
                 UserName = "superadmin",
                 Email = "superadmin@hotmail.com",
             };
@@ -65,17 +70,19 @@ namespace Inlämning_Asp.Data
 
             Buyer[] organizers = new Buyer[] {
                 new Buyer(){
-                    FirstName = "Arvin",
+                    FirstName = "Alireza",
                     UserName = "Funcorp",
                     Email = "info@funcorp.com",
                     PhoneNumber = "+1 203 43 234",
                 },
                 new Buyer(){
+                    FirstName = "Björn",
                     UserName = "Funcorp1",
                     Email = "info1@funcorp.com",
                     PhoneNumber = "+1 203 43 234",
                 },
                 new Buyer(){
+                    FirstName = "Karl",
                     UserName = "Funcorp2",
                     Email = "info2@funcorp.com",
                     PhoneNumber = "+1 203 43 234",
@@ -83,6 +90,7 @@ namespace Inlämning_Asp.Data
             };
             foreach (var org in organizers)
             {
+            
                 await Check(userManager.CreateAsync(org, "Passw0rd!"));
                 await Check(userManager.AddToRoleAsync(org, "Organizer"));
             }
@@ -96,6 +104,7 @@ namespace Inlämning_Asp.Data
                     Date=DateTime.Now.AddDays(34),
                     SpotsAvailable=234,
                     Organizer= organizers[0],
+                    OrganizerName= "Alireza",
                 },
                 new Event(){
                     Title="Moonhaven",
@@ -105,6 +114,7 @@ namespace Inlämning_Asp.Data
                     Date=DateTime.Now.AddDays(12),
                     SpotsAvailable=23,
                     Organizer= organizers[1],
+                    OrganizerName= "Björn",
                 },
             };
 

@@ -16,5 +16,6 @@ namespace Inlämning_Asp.Models
         public int SpotsAvailable { get; set; }
         public List<Buyer> Attendees { get; set; }
         public Buyer Organizer { get; set; }
+        public string OrganizerName { get; set; }
     }
 }

@@ -1,77 +1,55 @@
 ﻿@page
 @model Inlämning_Asp.Pages.Delete_eventModel
-@{ ViewData["Title"] = "Delete_event";
-}
-<div class="card">
-    <div class="card-header">
-        <h5 class="mb-0">
-            @Model.Event.Title
-        </h5>
-    </div>
+@{ ViewData["Title"] = "Delete"; }
 
-    <div class="card-body">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Event.Description)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(model => model.Event.Description)
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Event.Place)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(model => model.Event.Place)
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Event.Place)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(model => model.Event.Place)
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Event.Date)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(model => model.Event.Date)
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Event.Address)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(model => model.Event.Address)
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<h1>Delete</h1>
 
-<div class="d-flex justify-content-center py-5">
-    @if (Request.Method == "POST")
-    {
-        <div class="d-flex flex-column py-2">
-            <h2>Successfully Deleted @Model.Event.Title! </h2>
-            <div class="d-flex justify-content-center">
-                <a asp-page="/Delete_Events" type="button" class="btn btn-outline-primary">Back TO Events</a>
-               
-            </div>
-        </div>
-    }
-    else
-    {
-        <form asp-route-id="@Model.Event.Id">
-            <input type="submit" class="btn btn-outline-primary" value="Remove This Event" />
-        </form>
-    }
+<h3 >Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="row ">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Place)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Place)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Event.SpotsAvailable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Event.SpotsAvailable)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Event.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./OrganizeEvents">Back to List</a>
+    </form>
 </div>

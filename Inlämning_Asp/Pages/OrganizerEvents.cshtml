@@ -1,0 +1,57 @@
+﻿@page
+@model Inlämning_Asp.Pages.OrganizerEventsModel
+
+@{ ViewData["Title"] = "OrganizeEvents"; }
+
+
+
+<div>
+    <h3>OrganizeEvents</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Place
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Event)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Place)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+      
+        <a asp-page="./Delete_event" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>}
+        </tbody>
+    </table>
+</div>

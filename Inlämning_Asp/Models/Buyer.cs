@@ -13,7 +13,7 @@ namespace Inlämning_Asp.Models
         [InverseProperty("Attendees")]
         public List<Event> Events { get; set; }
         [InverseProperty("Organizer")]
-        public List<Event> OrganizedEvents { get; set; }
+        public List<Event> HostedEvents { get; set; }
         public List<Buyer> Buyers  { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
