@@ -27,23 +27,41 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a asp-page="/Index" type="button" class="btn btn-outline-primary">Home</a>
+                            <a asp-page="/MyEvents" type="button" class="btn btn-outline-primary">My Events</a>
+                            <a asp-page="/Events" type="button" class="btn btn-outline-primary">Events</a>
                         </li>
                         <li class="nav-item">
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                @if (User.IsInRole("Organizer"))
-                                {
-                                    <a asp-page="/OrganizerEvents" type="button" class="btn btn-outline-primary">Organized Events</a>
-                                }
-                                else
-                                {
-                                    <a asp-page="/Events" type="button" class="btn btn-outline-primary">Events</a>
-                                }
+                                <h1 style="  background-color: greenyellow">@User.Identity.Name</h1>
+
+
 
                             }
 
+
                         </li>
-                        </ul>
+                        <li class="nav-item">
+                            @if (User.IsInRole("Organizer"))
+                            {
+                                <button> <a asp-page="/Add_Event">Add Event</a></button>
+                                <button> <a asp-page="/Delete_Events">Delete Event</a></button>
+                            }
+
+
+                        </li>
+                        <li class="nav-item">
+                            @if (User.IsInRole("Admin"))
+                            {
+                            <a style="background-color:red" asp-page="/Admin/ManageUsers">Manage Users</a>
+                               
+                            }
+
+
+                        </li>
+
+
+                    </ul>
                     </div>
                 </div>
             </nav>

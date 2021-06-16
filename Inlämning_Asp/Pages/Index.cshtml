@@ -14,13 +14,12 @@
         Welcome! Dear @User.Identity.Name
         You are an Organizer!
 
-        <button> <a asp-page="/Add_Event">Add Event</a></button>
-        <button> <a asp-page="/Delete_Events">Delete Event</a></button>
+        
 
     </h1> }
     else if (User.IsInRole("Admin"))
     {
-        <a asp-page="/Admin/ManageUsers">Admin</a>
+        
         <h1 class="display-4">Welcome @User.Identity.Name! Yo Admin!!</h1> }
     else
     {
@@ -30,12 +29,16 @@
     <h2>The Best Event Provider in The World</h2>
     <img src="~/142380.jpg" />
     <div class="btn-group">
-       
+
         @if (User.Identity.IsAuthenticated)
         {
-            <a asp-page="/User/Logout" type="button" class="btn btn-outline-primary">Log Out</a> }
+            <a asp-page="/User/Logout" type="button" class="btn btn-outline-primary">Log Out</a>
+            <a asp-page="/Events" type="button" class="btn btn-outline-primary">Find a New Event</a> 
+            }
         else
         {
-            <a asp-page="/User/Login" type="button" class="btn btn-outline-primary">Log In</a>}
+            <a asp-page="/User/Login" type="button" class="btn btn-outline-primary">Log In</a>
+            <a asp-page="/User/Register" type="button" class="btn btn-outline-primary">Register</a>
+        }
     </div>
 </div>
